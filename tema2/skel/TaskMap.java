@@ -80,19 +80,6 @@ public class TaskMap implements Runnable {
                     }
                 }
             }
-//
-//            for (String elem : splitFragment) {
-//                int len = elem.length();
-//                if (localMap.containsKey(len)) {
-//                    localMap.put(len, localMap.get(len) + 1);
-//                } else {
-//                    localMap.put(len, 1);
-//                }
-//            }
-
-            for (Map.Entry<Integer, Integer> entry : localMap.entrySet()) {
-                System.out.println(entry.getKey() + ":" + entry.getValue().toString());
-            }
 
             synchronized (Tema2.mapResult) {
                 Tema2.mapResult.get(fileName).add(localMap);

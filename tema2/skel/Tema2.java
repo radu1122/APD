@@ -4,6 +4,7 @@ import java.util.concurrent.*;
 
 public class Tema2 {
     public static final HashMap<String, Vector <HashMap<Integer, Integer>>> mapResult = new HashMap<>();
+    public static final HashMap<String, FinalResult> reduceResult = new HashMap<>();
 
     public static void main(String[] args) throws IOException, InterruptedException {
         if (args.length < 3) {
@@ -28,6 +29,7 @@ public class Tema2 {
         Collection<Future<?>> futures = new LinkedList<Future<?>>();
 
 
+        // preparing map
         for (int i = 0; i < docsNr; i++) {
             files[i] = br.readLine();
             mapResult.put(files[i], new Vector<HashMap<Integer, Integer>>());
@@ -44,6 +46,7 @@ public class Tema2 {
             }
         }
 
+        // running map
         for (Future<?> future:futures) {
             try {
                 future.get();
@@ -52,7 +55,32 @@ public class Tema2 {
             }
         }
         executor.shutdown();
-        System.out.println("got here");
 
+        // preparing reduce
+        executor = (ThreadPoolExecutor) Executors.newFixedThreadPool(NUMBER_OF_THREADS);
+        futures = new LinkedList<Future<?>>();
+
+        for (Map.Entry<String, Vector <HashMap<Integer, Integer>>> fileElem : mapResult.entrySet()) {
+            futures.add(executor.submit(new TaskReduce(fileElem.getKey(), fileElem.getValue())));
+        }
+
+        // running reduce
+        for (Future<?> future:futures) {
+            try {
+                future.get();
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+        executor.shutdown();
+
+        Map<String, FinalResult> map = new TreeMap<>(reduceResult);
+
+
+        for (Map.Entry<String, FinalResult> entry : map.entrySet()) {
+            bw.write(entry.getValue().toString() + "\n");
+        }
+        bw.flush();
+        bw.close();
     }
 }
