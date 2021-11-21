@@ -1,0 +1,26 @@
+Copyright Radu-Andrei Dumitrescu 332CA 2021
+
+-------------------------------------------------------------------------------------------------------------------
+
+Descriere implementare:
+ - Am paralelizat forurile din functia run_genetic_algorithm
+ - acolo unde a fost nevoie am folosit o bariera pentru a opri threadurile
+   ca sa ajunga toate in acelasi timp la urmatorul pas al algoritmului
+ - nu a fost nevoie de mutex, threadurile accesand simultan zone diferite de memorie
+ - pentru sortare am ales sa raman pe varianta cu qsort
+ - dar am optimizat functia de cmp
+ - am observat ca in aceasta functie se calcula de fiecare data un count,
+   asa ca am ales sa fac acest count o singura data inainte de sortare si m-am
+   folosit de toate threadurile disponibile
+ - pentru a pastra acest count pentru fiecare individual, am adaugat un nou camp count in structura
+
+Timp de lucru: 2 zile, in total aproximativ 4h efectiv de lucru
+
+Probleme intampinate:
+ - cea mai mare problema a fost dupa ce paralelizasem toate forurile, dar
+   inca nu eram in baremul de timp si a durat ceva pana am realizat solutia cu optimizarea functiei de cmp
+ - o alta problema care a durat aprox 1h a fost sa imi fac setupul de docker pe Windows, initial am incercat un setup
+   in Clion, dar fara succes
+
+Feedback:
+ - mi s-a parut foarte fain exercitiul acesta de a optimiza prin paralelizare un algoritm existent

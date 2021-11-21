@@ -1,0 +1,3 @@
+10
+1
+D:\Facultate\APD\tema2\out\production\tema2\in1.txt

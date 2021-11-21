@@ -6,25 +6,3 @@
 
 #IncludeRegexTransform: 
 
-D:/Facultate/APD/tema1/skel/genetic_algorithm_par.c
-stdio.h
--
-string.h
--
-stdlib.h
--
-genetic_algorithm_par.h
-D:/Facultate/APD/tema1/skel/genetic_algorithm_par.h
-pthread.h
--
-
-D:/Facultate/APD/tema1/skel/genetic_algorithm_par.h
-sack_object.h
-D:/Facultate/APD/tema1/skel/sack_object.h
-individual.h
-D:/Facultate/APD/tema1/skel/individual.h
-
-D:/Facultate/APD/tema1/skel/individual.h
-
-D:/Facultate/APD/tema1/skel/sack_object.h
-

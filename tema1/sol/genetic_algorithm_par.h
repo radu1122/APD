@@ -13,10 +13,9 @@ struct my_arg {
     int generations_count;
     individual *current_generation;
     individual *next_generation;
-    sack_object *objects;
+    const sack_object *objects;
     int sack_capacity;
     pthread_barrier_t *barrier;
-    pthread_mutex_t *lock;
 };
 
 
